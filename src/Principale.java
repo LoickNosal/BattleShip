@@ -5,7 +5,7 @@ public class Principale {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
 		
-		Grille g = new Grille(10,10);
+		Grille g = new Grille(20,20);
 //		Grille g2 = new Grille(10,10);
 		Joueur j1 = new Joueur(g,"Loick");
 //		Joueur j2 = new Joueur(g2,"Leandre");
@@ -19,7 +19,7 @@ public class Principale {
 //		j1.afficherBateau();
 //		j1.tirer(1, 6, j1);
 //		j1.tirer(2, 6, j1);
-//		j1.tirer(3, 6, j1);
+//		j1.tirer(3, 6, j1);µµ
 //		j1.tirer(4, 6, j1);
 //		j1.tirer(5, 6, j1);
 //		j1.sauvegarder("test");

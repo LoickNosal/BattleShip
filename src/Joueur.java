@@ -111,7 +111,7 @@ public class Joueur implements Serializable{
 		}else {
 			j.gJoueur.getTabCa()[posX][posY].vider(true); //on a l'info sur la case, on dit qu'elle 
 			//est vraiment vide
-			System.out.println("Le joueur " + this.nomJoueur + " n'a touché aucun bateau adverse");
+			System.out.println("                                            Le joueur " + this.nomJoueur + " n'a touché aucun bateau adverse");
 		}
 		
 	}

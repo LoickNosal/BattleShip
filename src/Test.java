@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class test {
+public class Test {
 
 	public static void main(String[] args) {
 		int entier0 = 0;

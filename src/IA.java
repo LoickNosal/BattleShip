@@ -24,7 +24,7 @@ public class IA extends Joueur implements Serializable {
 		boolean peutTirer = true;
 		while(peutTirer == true) {
 		if (j.gJoueur.getTabCa()[posX][posY].isEstVide() == false) {
-			System.out.println("L'IA tire en (" + posX + "," + posY + ")");
+			System.out.println("                                            L'IA tire en (" + posX + "," + posY + ")");
 			if (j.gJoueur.getTabCa()[posX][posY].isEstOccupe() == true) {
 				for(Bateau b : j.listeBateau) {
 					b.touche(posX, posY);
@@ -33,7 +33,7 @@ public class IA extends Joueur implements Serializable {
 			}else {
 				j.gJoueur.getTabCa()[posX][posY].vider(true); //on a l'info sur la case, on dit qu'elle 
 				//est vraiment vide
-				System.out.println("l'IA n'a touché aucun bateau");
+				System.out.println("                                            l'IA n'a touché aucun bateau");
 			}	
 			peutTirer = false;
 		}else {
@@ -103,10 +103,17 @@ public class IA extends Joueur implements Serializable {
 				}else if(i == 4) {
 					System.out.print("             # : cases vides sans bateau");
 					System.out.print("                  ");
+				}else if(i>9) {
+					System.out.print("                                                         ");
 				}else {
 					System.out.print("                                                          ");
-				}	
-				System.out.print(i + "  ");
+				}
+				if (i<10) {
+					System.out.print(i + "  ");
+				}else {
+					System.out.print(i + " ");
+				}
+				
 				
 				for (int j = 0; j < this.gJoueur.getTailleX(); j++) {
 					if (this.bateauPresent(j, i) == true) {
