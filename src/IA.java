@@ -14,7 +14,7 @@ public class IA extends Joueur implements Serializable {
 	}
 	
 	public int nombreRandom(int max) {
-		int x = (int)(Math.random() * (9+1));
+		int x = (int)(Math.random() * (max+1));
 		return x;
 	}
 	
@@ -45,9 +45,15 @@ public class IA extends Joueur implements Serializable {
 	}
 	
 	public void afficherGrilleJoueur(Joueur jo) {
-		System.out.print("      --Grille de " + jo.nomJoueur + "--");
-		System.out.print("                                                                   ");
-		System.out.println("      --Grille de " + this.nomJoueur + "--");
+		for (int i = 0; i < (jo.gJoueur.getTailleX()*3)/2; i++) {
+			System.out.print(" ");
+		}
+		System.out.print("--Grille de " + jo.nomJoueur + "--");
+		for (int i = 0; i < (this.gJoueur.getTailleX()*3)/2 + (jo.gJoueur.getTailleX()*3)/2 + 60; i++) {
+			System.out.print(" ");
+		}
+		
+		System.out.println("--Grille de " + this.nomJoueur + "--");
 		for (int i = 0; i < jo.gJoueur.getTailleX(); i++) {
 			if(i>9) {
 			 System.out.print(i+" ");
