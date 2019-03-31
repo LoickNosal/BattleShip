@@ -36,52 +36,65 @@ public class Joueur implements Serializable{
 		System.out.println("--Placement des bateaux de " + this.nomJoueur + "--");
 		afficherGrilleJoueur();
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.print("orientation du porte-avion (taille 5) : ");
-		boolean o = sc.nextBoolean();
-		System.out.print("position x de depart du porte-avion : ");
-		int posX = sc.nextInt();
-		System.out.print("position y de depart du porte-avion : ");
-		int posY = sc.nextInt();
-		Bateau porteAvion = new Bateau("porte-avion", gJoueur, posX,posY,5,o);
-		listeBateau.add(porteAvion);
-		afficherGrilleJoueur();
-		System.out.print("orientation du croiseur (taille 4) : ");
-		o = sc.nextBoolean();
-		System.out.print("position x de depart du croiseur : ");
-		posX = sc.nextInt();
-		System.out.print("position y de depart du croiseur : ");
-		posY = sc.nextInt();
-		Bateau croiseur = new Bateau("croiseur", gJoueur, posX,posY,4,o);
-		listeBateau.add(croiseur);
-		afficherGrilleJoueur();
-		System.out.print("orientation du contre torpilleur (taille 3) : ");
-		o = sc.nextBoolean();
-		System.out.print("position x de depart du contre torpilleur : ");
-		posX = sc.nextInt();
-		System.out.print("position y de depart du contre torpilleur : ");
-		posY = sc.nextInt();
-		Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur, posX,posY,3,o);
-		listeBateau.add(contreTorpilleur);
-		afficherGrilleJoueur();
-		System.out.print("orientation du sous-marin (taille 3) : ");
-		o = sc.nextBoolean();
-		System.out.print("position x de depart du sous-marin : ");
-		posX = sc.nextInt();
-		System.out.print("position y de depart du sous-marin : ");
-		posY = sc.nextInt();
-		Bateau sousMarin = new Bateau("sous-marin", gJoueur, posX,posY,3,o);
-		listeBateau.add(sousMarin);
-		afficherGrilleJoueur();
-		System.out.print("orientation du torpilleur (taille 2) : ");
-		o = sc.nextBoolean();
-		System.out.print("position x de depart du torpilleur : ");
-		posX = sc.nextInt();
-		System.out.print("position y de depart du torpilleur : ");
-		posY = sc.nextInt();
-		Bateau torpilleur = new Bateau("torpilleur", gJoueur, posX,posY,2,o);
-		listeBateau.add(torpilleur);
-
+		System.out.print("Voulez-vous placez vos bateaux de facon aléatoire ? oui/non : ");
+		int reponse = sc.nextInt();
+		if (reponse == 1) {
+			Bateau porteAvion = new Bateau("porte-avion", gJoueur,5);
+			listeBateau.add(porteAvion);
+			Bateau croiseur = new Bateau("croiseur", gJoueur,4);
+			listeBateau.add(croiseur);
+			Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur,3);
+			listeBateau.add(contreTorpilleur);
+			Bateau sousMarin = new Bateau("sous-marin", gJoueur,3);
+			listeBateau.add(sousMarin);
+			Bateau torpilleur = new Bateau("torpilleur", gJoueur,2);
+			listeBateau.add(torpilleur);
+		}else {
+			System.out.print("orientation du porte-avion (taille 5) : ");
+			boolean o = sc.nextBoolean();
+			System.out.print("position x de depart du porte-avion : ");
+			int posX = sc.nextInt();
+			System.out.print("position y de depart du porte-avion : ");
+			int posY = sc.nextInt();
+			Bateau porteAvion = new Bateau("porte-avion", gJoueur, posX,posY,5,o);
+			listeBateau.add(porteAvion);
+			afficherGrilleJoueur();
+			System.out.print("orientation du croiseur (taille 4) : ");
+			o = sc.nextBoolean();
+			System.out.print("position x de depart du croiseur : ");
+			posX = sc.nextInt();
+			System.out.print("position y de depart du croiseur : ");
+			posY = sc.nextInt();
+			Bateau croiseur = new Bateau("croiseur", gJoueur, posX,posY,4,o);
+			listeBateau.add(croiseur);
+			afficherGrilleJoueur();
+			System.out.print("orientation du contre torpilleur (taille 3) : ");
+			o = sc.nextBoolean();
+			System.out.print("position x de depart du contre torpilleur : ");
+			posX = sc.nextInt();
+			System.out.print("position y de depart du contre torpilleur : ");
+			posY = sc.nextInt();
+			Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur, posX,posY,3,o);
+			listeBateau.add(contreTorpilleur);
+			afficherGrilleJoueur();
+			System.out.print("orientation du sous-marin (taille 3) : ");
+			o = sc.nextBoolean();
+			System.out.print("position x de depart du sous-marin : ");
+			posX = sc.nextInt();
+			System.out.print("position y de depart du sous-marin : ");
+			posY = sc.nextInt();
+			Bateau sousMarin = new Bateau("sous-marin", gJoueur, posX,posY,3,o);
+			listeBateau.add(sousMarin);
+			afficherGrilleJoueur();
+			System.out.print("orientation du torpilleur (taille 2) : ");
+			o = sc.nextBoolean();
+			System.out.print("position x de depart du torpilleur : ");
+			posX = sc.nextInt();
+			System.out.print("position y de depart du torpilleur : ");
+			posY = sc.nextInt();
+			Bateau torpilleur = new Bateau("torpilleur", gJoueur, posX,posY,2,o);
+			listeBateau.add(torpilleur);
+		}
 		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés--");
 	}
 	public void replacerBateaux() {
@@ -134,7 +147,10 @@ public class Joueur implements Serializable{
 			}
 		}
 		if (perdu) {
-			System.out.println("tout les bateaux adverses ont ete coules");
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.println("tout les bateaux ont ete coules");
 		}
 		return perdu;
 	}
@@ -200,7 +216,7 @@ public class Joueur implements Serializable{
 	}
 	
 	public void afficherGrilleJoueur() {
-		System.out.println("      --Grille de " + this.nomJoueur + "--");
+		System.out.println("--Grille de " + this.nomJoueur + "--");
 		for (int i = 0; i < this.gJoueur.getTailleX(); i++) {
 			if(i>9) {
 			 System.out.print(i+" ");
@@ -238,7 +254,7 @@ public class Joueur implements Serializable{
 				System.out.println("             O : vos bateaux");
 			}else if(i == 2) {
 				System.out.print(i);
-				System.out.println("             X : vos bateaux touchés");
+				System.out.println("             X : bateaux touchés");
 			}else if(i == 3) {
 				System.out.print(i);
 				System.out.println("             - : cases inconnus");
@@ -250,6 +266,7 @@ public class Joueur implements Serializable{
 			}
 			
 		}
+		System.out.println();
 	}
 	
 	

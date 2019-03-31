@@ -193,6 +193,98 @@ public class Bateau implements Serializable{
 				System.out.println("placement du " + this.nom + " effectué");
 			}
 	}
+	
+	public Bateau(String n,Grille g,int t) {
+		if (t > 5) {
+			t = 5;
+		}else if(t < 1) {
+			t = 1;
+		}
+		
+		this.estEnVie = true;
+		this.nom = n;
+		this.gri = g;
+		this.taille = t;
+		this.vie = this.taille;
+		int x,y;
+		int orien = nombreRandom(1);
+		boolean o;
+		if (orien == 1) {
+			o = true;
+			x = nombreRandom(this.gri.getTailleX()-1);
+			y = nombreRandom(this.gri.getTailleY() - this.taille - 1);
+		}else {
+			o = false;
+			x = nombreRandom(this.gri.getTailleX() - this.taille - 1);
+			y = nombreRandom(this.gri.getTailleY()-1);
+		}
+		
+		boolean placementPossible = true;
+		if(o == true) { //orientation verticale
+			//test si un bateau est déjà présent sur l'une des cases
+			for (int i = 0; i < taille; i++) {
+				
+				if(gri.getTabCa()[x][y+i].isEstOccupe() == true) {
+					placementPossible = false;
+					this.replacerAleatoire();
+					return;
+				}
+
+			}
+			
+		}else if(o == false) { //orientation horizontale
+			//test si un bateau est déjà présent sur l'une des cases
+			for (int i = 0; i < taille; i++) {
+
+				if(gri.getTabCa()[x+i][y].isEstOccupe() == true) {
+					placementPossible = false;
+					this.replacerAleatoire();
+					return;
+				}
+
+			}
+		}
+		//si le placement est possible (pas sur des cases deja occupées ni hors de la grille)
+		if(placementPossible == true) {
+
+			this.posX = x;
+			this.posY = y;
+			this.posBateau = new ArrayList<Case>();
+			
+			if (o == true ) { //orientation verticale
+				for (int i = 0; i < taille; i++) {
+					gri.getTabCa()[x][y+i].occupation(true); //on change l'occupation de la grille
+
+				}
+	
+				for (int i = this.posY; i <this.taille+this.posY; i++) {
+
+					this.posBateau.add(new Case(posX,i)); //on indique les positions du bateau
+				}
+				
+			}else if(o == false) { //orientation horizontale
+				
+				for (int i = 0; i < taille; i++) {
+					gri.getTabCa()[x+i][y].occupation(true); //on change l'occupation de la grille
+				}
+
+				
+				for (int i = this.posX; i < this.taille + this.posX; i++) {
+
+					this.posBateau.add(new Case(i,posY)); //on indique les positions du bateau
+				}
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	public int nombreRandom(int max) {
+		int x = (int)(Math.random() * (max+1));
+		return x;
+	}
 	/**
 	 * Methode qui reinitialise les cases occupés par le bateau
 	 * methode appeller dans repositioner bateau car toutes les positions doivent
@@ -213,6 +305,72 @@ public class Bateau implements Serializable{
 			
 			}
 		}
+		
+	}
+	public void replacerAleatoire() {				
+				int x,y;
+				int orien = nombreRandom(1);
+				boolean o;
+				if (orien == 1) {
+					o = true;
+					x = nombreRandom(this.gri.getTailleX()-1);
+					y = nombreRandom(this.gri.getTailleY() - this.taille - 1);
+				}else {
+					o = false;
+					x = nombreRandom(this.gri.getTailleX() - this.taille - 1);
+					y = nombreRandom(this.gri.getTailleY()-1);
+				}
+				
+				//même instructions que le constructeurs avec même vérifications.
+				
+				boolean placementPossible = true;
+				if(o == true) { //orientation verticale
+					for (int i = 0; i < taille; i++) {
+						if(gri.getTabCa()[x][y+i].isEstOccupe() == true) {
+							placementPossible = false;
+							this.replacerAleatoire(); //récursivité de la méthode
+							return;
+						}
+					}
+				}else if(o == false) { //orientation horizontale
+					for (int i = 0; i < taille; i++) {
+						if(gri.getTabCa()[x+i][y].isEstOccupe() == true) {
+							placementPossible = false;
+							this.replacerAleatoire(); //récursivité de la méthode
+							return;
+						}
+
+					}
+				}
+				//si le placement est possible, meme instructions que dans le constructeur
+				if(placementPossible == true) {
+
+					this.posX = x;
+					this.posY= y;
+					this.orientation = o;
+					this.posBateau = new ArrayList<Case>();
+					
+					if (o == true ) {
+						for (int i = 0; i < taille; i++) {
+							gri.getTabCa()[x][y+i].occupation(true);
+						}
+			
+						for (int i = this.posY; i <this.taille+this.posY; i++) {
+							this.posBateau.add(new Case(posX,i));
+						}
+						
+					}else if(o == false) {
+						
+						for (int i = 0; i < taille; i++) {
+							gri.getTabCa()[x+i][y].occupation(true);
+						}
+
+						
+						for (int i = this.posX; i < this.taille + this.posX; i++) {
+							this.posBateau.add(new Case(i,posY));
+						}
+					}
+				}
 		
 	}
 	

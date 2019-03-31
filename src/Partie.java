@@ -59,13 +59,22 @@ public class Partie implements Serializable{
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
 		while(end == false) {
-			System.out.print("joueur 1 , position x où tirer : ");
+			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(j1.nomJoueur + " , position x où tirer : ");
 			int posX = sc.nextInt();
-			System.out.print("joueur 1 , position y où tirer : ");
+			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(j1.nomJoueur + " position y où tirer : ");
 			int posY = sc.nextInt();
 			j1.tirer(posX, posY, joueurIA);
 			
 			if (joueurIA.aucunBateau() == true) {
+				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
 				System.out.println(this.j1.getNomJoueur() + " gagne");
 				end = true;
 			}
@@ -75,6 +84,9 @@ public class Partie implements Serializable{
 				//j1.afficherGrilleJoueur();
 				joueurIA.afficherGrilleJoueur(j1);
 				if (j1.aucunBateau() == true) {
+					for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+						System.out.print(" ");
+					}
 					System.out.println("l'IA gagne");
 					end = true;
 				}

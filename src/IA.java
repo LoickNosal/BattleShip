@@ -19,20 +19,15 @@ public class IA extends Joueur implements Serializable {
 	}
 	
 	public void creationBateaux() {
-		int bool = nombreRandom(1);
-		boolean orient = false;
-		if (bool == 1) {
-			orient = true;
-		}
-		Bateau porteAvion = new Bateau("porte-avion", gJoueur, 5,0,5,orient);
+		Bateau porteAvion = new Bateau("porte-avion", gJoueur,5);
 		listeBateau.add(porteAvion);
-		Bateau croiseur = new Bateau("croiseur", gJoueur, 1,0,4,true);
+		Bateau croiseur = new Bateau("croiseur", gJoueur,4);
 		listeBateau.add(croiseur);
-		Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur, 2,0,3,true);
+		Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur,3);
 		listeBateau.add(contreTorpilleur);
-		Bateau sousMarin = new Bateau("sous-marin", gJoueur, 3,0,3,true);
+		Bateau sousMarin = new Bateau("sous-marin", gJoueur,3);
 		listeBateau.add(sousMarin);
-		Bateau torpilleur = new Bateau("torpilleur", gJoueur, 4,0,2,true);
+		Bateau torpilleur = new Bateau("torpilleur", gJoueur,2);
 		listeBateau.add(torpilleur);
 	}
 	
@@ -123,8 +118,8 @@ public class IA extends Joueur implements Serializable {
 					System.out.print("               O : vos bateaux");
 					System.out.print("                              ");
 				}else if(i == 2) {
-					System.out.print("               X : vos bateaux touchés");
-					System.out.print("                      ");
+					System.out.print("               X : bateaux touchés");
+					System.out.print("                          ");
 				}else if(i == 3) {
 					System.out.print("               - : cases inconnus");
 					System.out.print("                           ");
@@ -164,6 +159,7 @@ public class IA extends Joueur implements Serializable {
 				
 				System.out.println();
 		}
+		System.out.println();
 	}
 
 
