@@ -37,13 +37,13 @@ public class Joueur implements Serializable{
 		afficherGrilleJoueur();
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("orientation du porteAvion (taille 5) : ");
+		System.out.print("orientation du porte-avion (taille 5) : ");
 		boolean o = sc.nextBoolean();
-		System.out.print("position x de depart du porteAvion : ");
+		System.out.print("position x de depart du porte-avion : ");
 		int posX = sc.nextInt();
-		System.out.print("position y de depart du porteAvion : ");
+		System.out.print("position y de depart du porte-avion : ");
 		int posY = sc.nextInt();
-		Bateau porteAvion = new Bateau("porte avion", gJoueur, posX,posY,5,o);
+		Bateau porteAvion = new Bateau("porte-avion", gJoueur, posX,posY,5,o);
 		listeBateau.add(porteAvion);
 		afficherGrilleJoueur();
 		System.out.print("orientation du croiseur (taille 4) : ");
@@ -102,6 +102,10 @@ public class Joueur implements Serializable{
 	}
 	
 	public void tirer(int posX, int posY, Joueur j) {
+		for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+			System.out.print(" ");
+		}
+		System.out.println(this.nomJoueur + " tire en (" + posX + "," + posY + ")");
 		if (j.gJoueur.getTabCa()[posX][posY].isEstOccupe() == true) {
 			for(Bateau b : j.listeBateau) {
 				b.touche(posX, posY);
@@ -111,7 +115,10 @@ public class Joueur implements Serializable{
 		}else {
 			j.gJoueur.getTabCa()[posX][posY].vider(true); //on a l'info sur la case, on dit qu'elle 
 			//est vraiment vide
-			System.out.println("                                            Le joueur " + this.nomJoueur + " n'a touché aucun bateau adverse");
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.println(this.nomJoueur + " n'a touché aucun bateau adverse");
 		}
 		
 	}
@@ -127,7 +134,7 @@ public class Joueur implements Serializable{
 			}
 		}
 		if (perdu) {
-			System.out.println("tout les bateaux ont ete coules");
+			System.out.println("tout les bateaux adverses ont ete coules");
 		}
 		return perdu;
 	}

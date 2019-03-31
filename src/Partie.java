@@ -66,7 +66,7 @@ public class Partie implements Serializable{
 			j1.tirer(posX, posY, joueurIA);
 			
 			if (joueurIA.aucunBateau() == true) {
-				System.out.println("joueur 1 gagne");
+				System.out.println(this.j1.getNomJoueur() + " gagne");
 				end = true;
 			}
 			

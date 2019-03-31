@@ -18,13 +18,34 @@ public class IA extends Joueur implements Serializable {
 		return x;
 	}
 	
+	public void creationBateaux() {
+		int bool = nombreRandom(1);
+		boolean orient = false;
+		if (bool == 1) {
+			orient = true;
+		}
+		Bateau porteAvion = new Bateau("porte-avion", gJoueur, 5,0,5,orient);
+		listeBateau.add(porteAvion);
+		Bateau croiseur = new Bateau("croiseur", gJoueur, 1,0,4,true);
+		listeBateau.add(croiseur);
+		Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur, 2,0,3,true);
+		listeBateau.add(contreTorpilleur);
+		Bateau sousMarin = new Bateau("sous-marin", gJoueur, 3,0,3,true);
+		listeBateau.add(sousMarin);
+		Bateau torpilleur = new Bateau("torpilleur", gJoueur, 4,0,2,true);
+		listeBateau.add(torpilleur);
+	}
+	
 	public void tirer(Joueur j) {
 		int posX = nombreRandom(maxX);
 		int posY = nombreRandom(maxY);
 		boolean peutTirer = true;
 		while(peutTirer == true) {
 		if (j.gJoueur.getTabCa()[posX][posY].isEstVide() == false) {
-			System.out.println("                                            L'IA tire en (" + posX + "," + posY + ")");
+			for (int i = 0; i < j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.println("L'IA tire en (" + posX + "," + posY + ")");
 			if (j.gJoueur.getTabCa()[posX][posY].isEstOccupe() == true) {
 				for(Bateau b : j.listeBateau) {
 					b.touche(posX, posY);
@@ -33,7 +54,10 @@ public class IA extends Joueur implements Serializable {
 			}else {
 				j.gJoueur.getTabCa()[posX][posY].vider(true); //on a l'info sur la case, on dit qu'elle 
 				//est vraiment vide
-				System.out.println("                                            l'IA n'a touché aucun bateau");
+				for (int i = 0; i < j.gJoueur.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
+				System.out.println("l'IA n'a touché aucun bateau adverse");
 			}	
 			peutTirer = false;
 		}else {
@@ -45,14 +69,12 @@ public class IA extends Joueur implements Serializable {
 	}
 	
 	public void afficherGrilleJoueur(Joueur jo) {
-		for (int i = 0; i < (jo.gJoueur.getTailleX()*3)/2; i++) {
+		String s = "--Grille de " + jo.nomJoueur + "--";
+		System.out.print(s);
+		for (int i = 0; i < (this.gJoueur.getTailleX()*3)-s.length() + 60 + 1; i++) {
 			System.out.print(" ");
 		}
-		System.out.print("--Grille de " + jo.nomJoueur + "--");
-		for (int i = 0; i < (this.gJoueur.getTailleX()*3)/2 + (jo.gJoueur.getTailleX()*3)/2 + 60; i++) {
-			System.out.print(" ");
-		}
-		
+
 		System.out.println("--Grille de " + this.nomJoueur + "--");
 		for (int i = 0; i < jo.gJoueur.getTailleX(); i++) {
 			if(i>9) {
@@ -62,7 +84,7 @@ public class IA extends Joueur implements Serializable {
 			}	
 		}
 		
-		System.out.print("                                                              ");
+		System.out.print("                                                                ");
 		
 		for (int i = 0; i < this.gJoueur.getTailleX(); i++) {
 			if(i>9) {
@@ -94,25 +116,25 @@ public class IA extends Joueur implements Serializable {
 			}
 				System.out.print(i);
 				if (i == 0) {
-					System.out.print("                 --Legendes--");
-					System.out.print("                             ");
+					System.out.print("                   --Legendes--");
+					System.out.print("                             "); //46 56 58
 					
 				}else if(i == 1) {
-					System.out.print("             O : vos bateaux");
+					System.out.print("               O : vos bateaux");
 					System.out.print("                              ");
 				}else if(i == 2) {
-					System.out.print("             X : vos bateaux touchés");
+					System.out.print("               X : vos bateaux touchés");
 					System.out.print("                      ");
 				}else if(i == 3) {
-					System.out.print("             - : cases inconnus");
+					System.out.print("               - : cases inconnus");
 					System.out.print("                           ");
 				}else if(i == 4) {
-					System.out.print("             # : cases vides sans bateau");
+					System.out.print("               # : cases vides sans bateau");
 					System.out.print("                  ");
 				}else if(i>9) {
-					System.out.print("                                                         ");
+					System.out.print("                                                           ");
 				}else {
-					System.out.print("                                                          ");
+					System.out.print("                                                            ");
 				}
 				if (i<10) {
 					System.out.print(i + "  ");
@@ -126,7 +148,7 @@ public class IA extends Joueur implements Serializable {
 						if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
 							System.out.print("X  ");
 						}else {
-							System.out.print("O  ");
+							System.out.print("O  "); //positions des bateaux de l'IA (cachés)
 						}
 						
 					}else {

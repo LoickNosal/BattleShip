@@ -316,8 +316,10 @@ public class Bateau implements Serializable{
 		
 		for(Case c : this.posBateau) {
 			if(c.getCaseX() == x && c.getCaseY() == y) {
-				
-				System.out.println("                                            bateau " + this.nom + " touché en (" + x +","+ y+")");
+				for (int i = 0; i < this.gri.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
+				System.out.println("bateau " + this.nom + " touché en (" + x +","+ y+")");
 				gri.getTabCa()[x][y].occupation(false);
 				//on réduit la vie du bateau de 1 car la case est touché
 				this.vie -= 1;
@@ -336,7 +338,10 @@ public class Bateau implements Serializable{
 		//si toutes les cases sont détruites, le bateau est coulé
 		if (this.vie <= 0) {
 			this.estEnVie = false;
-			System.out.println("                                            bateau " + this.nom + " coulé");
+			for (int i = 0; i < this.gri.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.println("bateau " + this.nom + " coulé");
 		}
 	}
 	
