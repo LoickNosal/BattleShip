@@ -36,7 +36,7 @@ public class Joueur implements Serializable{
 	
 	public void creationBateaux() {
 		System.out.println("--Placement des bateaux de " + this.nomJoueur + "--");
-		afficherGrilleJoueur();
+		afficherGrilleJoueur(this);
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Voulez-vous placez vos bateaux de facon aléatoire ? oui/non : ");
 		String reponse = sc.nextLine();
@@ -60,7 +60,7 @@ public class Joueur implements Serializable{
 			int posY = sc.nextInt();
 			Bateau porteAvion = new Bateau("porte-avion", gJoueur, posX,posY,5,o);
 			listeBateau.add(porteAvion);
-			afficherGrilleJoueur();
+			afficherGrilleJoueur(this);
 			System.out.print("orientation du croiseur (taille 4) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du croiseur : ");
@@ -69,7 +69,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau croiseur = new Bateau("croiseur", gJoueur, posX,posY,4,o);
 			listeBateau.add(croiseur);
-			afficherGrilleJoueur();
+			afficherGrilleJoueur(this);
 			System.out.print("orientation du contre torpilleur (taille 3) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du contre torpilleur : ");
@@ -78,7 +78,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur, posX,posY,3,o);
 			listeBateau.add(contreTorpilleur);
-			afficherGrilleJoueur();
+			afficherGrilleJoueur(this);
 			System.out.print("orientation du sous-marin (taille 3) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du sous-marin : ");
@@ -87,7 +87,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau sousMarin = new Bateau("sous-marin", gJoueur, posX,posY,3,o);
 			listeBateau.add(sousMarin);
-			afficherGrilleJoueur();
+			afficherGrilleJoueur(this);
 			System.out.print("orientation du torpilleur (taille 2) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du torpilleur : ");
@@ -96,7 +96,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau torpilleur = new Bateau("torpilleur", gJoueur, posX,posY,2,o);
 			listeBateau.add(torpilleur);
-			afficherGrilleJoueur();
+			afficherGrilleJoueur(this);
 		}
 		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés--");
 	}
@@ -218,8 +218,24 @@ public class Joueur implements Serializable{
 		return present;
 	}
 	
-	public void afficherGrilleJoueur() {
+	public void afficherGrilleJoueur(Joueur jo) {
+		String s = "--Grille de " + jo.nomJoueur + "--";
+		System.out.print(s);
+		for (int i = 0; i < (this.gJoueur.getTailleX()*3)-s.length() + 60 + 1; i++) {
+			System.out.print(" ");
+		}
+
 		System.out.println("--Grille de " + this.nomJoueur + "--");
+		for (int i = 0; i < jo.gJoueur.getTailleX(); i++) {
+			if(i>9) {
+			 System.out.print(i+" ");
+			}else {
+				System.out.print(i+"  ");
+			}	
+		}
+		
+		System.out.print("                                                                ");
+		
 		for (int i = 0; i < this.gJoueur.getTailleX(); i++) {
 			if(i>9) {
 			 System.out.print(i+" ");
@@ -227,18 +243,19 @@ public class Joueur implements Serializable{
 				System.out.print(i+"  ");
 			}	
 		}
+		
 		System.out.println();
-		for (int i = 0; i < this.gJoueur.getTailleY(); i++) {
-			for (int j = 0; j < this.gJoueur.getTailleX(); j++) {
-				if (bateauPresent(j, i) == true) {
-					if (gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
+		for (int i = 0; i < jo.gJoueur.getTailleY(); i++) {
+			for (int j = 0; j < jo.gJoueur.getTailleX(); j++) {
+				if (jo.bateauPresent(j, i) == true) {
+					if (jo.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
 						System.out.print("X  ");
 					}else {
 						System.out.print("O  ");
 					}
 					
 				}else {
-					if (gJoueur.getTabCa()[j][i].isEstVide() == true) {
+					if (jo.gJoueur.getTabCa()[j][i].isEstVide() == true) {
 						System.out.print("#  ");
 					}else {
 						System.out.print("-  ");
@@ -247,27 +264,55 @@ public class Joueur implements Serializable{
 				}
 				
 			}
-			
-			if (i == 0) {
 				System.out.print(i);
-				System.out.println("                 --Legendes--");
+				if (i == 0) {
+					System.out.print("                   --Legendes--");
+					System.out.print("                             "); //46 56 58
+					
+				}else if(i == 1) {
+					System.out.print("               O : vos bateaux");
+					System.out.print("                              ");
+				}else if(i == 2) {
+					System.out.print("               X : bateaux touchés");
+					System.out.print("                          ");
+				}else if(i == 3) {
+					System.out.print("               - : cases inconnus");
+					System.out.print("                           ");
+				}else if(i == 4) {
+					System.out.print("               # : cases vides sans bateau");
+					System.out.print("                  ");
+				}else if(i>9) {
+					System.out.print("                                                           ");
+				}else {
+					System.out.print("                                                            ");
+				}
+				if (i<10) {
+					System.out.print(i + "  ");
+				}else {
+					System.out.print(i + " ");
+				}
 				
-			}else if(i == 1) {
-				System.out.print(i);
-				System.out.println("             O : vos bateaux");
-			}else if(i == 2) {
-				System.out.print(i);
-				System.out.println("             X : bateaux touchés");
-			}else if(i == 3) {
-				System.out.print(i);
-				System.out.println("             - : cases inconnus");
-			}else if(i == 4) {
-				System.out.print(i);
-				System.out.println("             # : cases vides sans bateau");
-			}else {
-				System.out.println(i);
-			}
-			
+				
+				for (int j = 0; j < this.gJoueur.getTailleX(); j++) {
+					if (this.bateauPresent(j, i) == true) {
+						if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
+							System.out.print("X  ");
+						}else {
+							System.out.print("O  "); //positions des bateaux de l'IA (cachés)
+						}
+						
+					}else {
+						if (this.gJoueur.getTabCa()[j][i].isEstVide() == true) {
+							System.out.print("#  ");
+						}else {
+							System.out.print("-  ");
+						}
+						
+					}
+					
+				}
+				
+				System.out.println();
 		}
 		System.out.println();
 	}

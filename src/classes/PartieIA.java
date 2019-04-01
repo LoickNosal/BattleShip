@@ -29,7 +29,7 @@ public class PartieIA implements Partie, Serializable {
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
 		d.close();
-		System.out.println("sauvegarde effecutée");
+		System.out.println("sauvegarde partie IA effecutée");
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class PartieIA implements Partie, Serializable {
 		ObjectInputStream di = new ObjectInputStream(new FileInputStream(source));
 		PartieIA p = (PartieIA)(di.readObject());
 		di.close();
-		System.out.println("sauvegarde chargée");
+		System.out.println("sauvegarde partie IA chargée");
 		return p;
 	}
 	
@@ -86,7 +86,7 @@ public class PartieIA implements Partie, Serializable {
 			Scanner sc2 = new Scanner(System.in);
 			String partie = sc2.nextLine();
 			if (partie.equals("oui")) {
-				this.sauvegarder("src\\Sauvegardes\\test");
+				this.sauvegarder("src\\Sauvegardes\\partieIA");
 				System.exit(1);
 			}
 		}
@@ -94,6 +94,7 @@ public class PartieIA implements Partie, Serializable {
 	
 	@Override
 	public void reprendrePartie() throws FileNotFoundException, IOException {
+		System.out.println();
 		intelligence.afficherGrilleJoueur(j);
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
