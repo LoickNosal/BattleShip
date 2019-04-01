@@ -143,7 +143,7 @@ public class IA extends Joueur implements Serializable {
 						if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
 							System.out.print("X  ");
 						}else {
-							System.out.print("O  "); //positions des bateaux de l'IA (cachés)
+							System.out.print("-  "); //positions des bateaux de l'IA (cachés)
 						}
 						
 					}else {

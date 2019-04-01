@@ -37,8 +37,8 @@ public class Joueur implements Serializable{
 		afficherGrilleJoueur();
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Voulez-vous placez vos bateaux de facon aléatoire ? oui/non : ");
-		int reponse = sc.nextInt();
-		if (reponse == 1) {
+		String reponse = sc.nextLine();
+		if (reponse.equals("oui")) {
 			Bateau porteAvion = new Bateau("porte-avion", gJoueur,5);
 			listeBateau.add(porteAvion);
 			Bateau croiseur = new Bateau("croiseur", gJoueur,4);
@@ -94,6 +94,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau torpilleur = new Bateau("torpilleur", gJoueur, posX,posY,2,o);
 			listeBateau.add(torpilleur);
+			afficherGrilleJoueur();
 		}
 		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés--");
 	}

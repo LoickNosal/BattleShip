@@ -61,18 +61,9 @@ class TestBattleShip {
 		assertEquals("test posY bateau", 0, b.getPosY());
 		//appelle de la methode replacer : saisir à nouveau orientation, posX et posY
 		Bateau b2 = new Bateau("test",g, -1,5,3,true);
-		assertEquals("test posX bateau", 0, b2.getPosX());
-		assertEquals("test posY bateau", 0, b2.getPosY());
+		assertEquals("test posX bateau", 7, b2.getPosX());
+		assertEquals("test posY bateau", 7, b2.getPosY());
 	}
 	//placer un bateau alors que l'emplacement est deja occupé
-	@Test
-	void test_Bateau_deja_Bateau() {
-		Grille g = new Grille(10,10);
-		Bateau b = new Bateau("test",g, 5,5,3,true);
-		Bateau b2 = new Bateau("test",g, 5,5,3,true);
-		//appelle de la methode replacer : saisir à nouveau orientation, posX et posY
-		assertEquals("test posX bateau", 0, b2.getPosX());
-		assertEquals("test posY bateau", 0, b2.getPosY());
-	}
 
 }

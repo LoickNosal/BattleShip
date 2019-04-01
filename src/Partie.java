@@ -10,10 +10,19 @@ public class Partie implements Serializable{
 	
 	private Joueur j1;
 	private Joueur j2;
+	private IA intelligence;
 	
+	//faire plusieurs constructeur
 	public Partie(Joueur joueur1, Joueur joueur2) {
 		this.j1 = joueur1;
 		this.j2 = joueur2;
+		this.intelligence = null;
+	}
+	public Partie() {
+		this.j1 = null;
+		this.j2 = null;
+		this.intelligence = null;
+		
 	}
 	
 	public void sauvegarder(String dest) throws IOException {
@@ -53,9 +62,56 @@ public class Partie implements Serializable{
 
 	}
 	
-	public void PartieVsIA() {
+	public void PartieVsIA() throws IOException {
 		Grille gIA = new Grille(j1.gJoueur.getTailleX(),j1.gJoueur.getTailleY());
-		IA joueurIA = new IA(gIA,"IA");
+		this.intelligence = new IA(gIA,"IA");
+		boolean end = false;
+		intelligence.afficherGrilleJoueur(j1);
+		Scanner sc = new Scanner(System.in);
+		while(end == false) {
+			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(j1.nomJoueur + " , position x où tirer : ");
+			int posX = sc.nextInt();
+			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(j1.nomJoueur + " position y où tirer : ");
+			int posY = sc.nextInt();
+			j1.tirer(posX, posY, intelligence);
+			
+			if (intelligence.aucunBateau() == true) {
+				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
+				System.out.println(this.j1.getNomJoueur() + " gagne");
+				end = true;
+			}
+			
+			if(end == false) {
+				intelligence.tirer(j1);
+				//j1.afficherGrilleJoueur();
+				intelligence.afficherGrilleJoueur(j1);
+				if (j1.aucunBateau() == true) {
+					for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+						System.out.print(" ");
+					}
+					System.out.println("l'IA gagne");
+					end = true;
+				}
+			}
+			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
+			Scanner sc2 = new Scanner(System.in);
+			String partie = sc2.nextLine();
+			if (partie.equals("oui")) {
+				this.sauvegarder("test");
+			}
+		}
+	}
+	
+	public void reprendrePartieIA() throws IOException {
+		intelligence.afficherGrilleJoueur(j1);
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
 		while(end == false) {
@@ -69,9 +125,9 @@ public class Partie implements Serializable{
 			}
 			System.out.print(j1.nomJoueur + " position y où tirer : ");
 			int posY = sc.nextInt();
-			j1.tirer(posX, posY, joueurIA);
+			j1.tirer(posX, posY, intelligence);
 			
-			if (joueurIA.aucunBateau() == true) {
+			if (intelligence.aucunBateau() == true) {
 				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
 					System.out.print(" ");
 				}
@@ -80,9 +136,9 @@ public class Partie implements Serializable{
 			}
 			
 			if(end == false) {
-				joueurIA.tirer(j1);
+				intelligence.tirer(j1);
 				//j1.afficherGrilleJoueur();
-				joueurIA.afficherGrilleJoueur(j1);
+				intelligence.afficherGrilleJoueur(j1);
 				if (j1.aucunBateau() == true) {
 					for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
 						System.out.print(" ");
@@ -91,7 +147,12 @@ public class Partie implements Serializable{
 					end = true;
 				}
 			}
-
+			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
+			Scanner sc2 = new Scanner(System.in);
+			String partie = sc2.nextLine();
+			if (partie.equals("oui")) {
+				this.sauvegarder("test");
+			}
 		}
 	}
 
