@@ -1,3 +1,5 @@
+package classes;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,6 +9,7 @@ import java.util.Scanner;
  * Classe qui modèlise les bateaux du jeu
  */
 public class Bateau implements Serializable{
+
 	/**
 	 * nom du bateau 
 	 */

@@ -1,3 +1,5 @@
+package classes;
+
 import java.io.Serializable;
 
 /**
@@ -5,6 +7,7 @@ import java.io.Serializable;
  * Classe Case modèlisant une case de la grille de jeu.
  */
 public class Case implements Serializable{
+
 	
 	
 	/**

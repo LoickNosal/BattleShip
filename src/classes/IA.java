@@ -1,3 +1,5 @@
+package classes;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -6,6 +8,7 @@ public class IA extends Joueur implements Serializable {
 	
 	private int maxX;
 	private int maxY;
+	
 	
 	public IA(Grille g, String n) {
 		super(g, n);
@@ -18,6 +21,7 @@ public class IA extends Joueur implements Serializable {
 		return x;
 	}
 	
+	@Override
 	public void creationBateaux() {
 		Bateau porteAvion = new Bateau("porte-avion", gJoueur,5);
 		listeBateau.add(porteAvion);
@@ -62,6 +66,7 @@ public class IA extends Joueur implements Serializable {
 	}
 
 	}
+	
 	
 	public void afficherGrilleJoueur(Joueur jo) {
 		String s = "--Grille de " + jo.nomJoueur + "--";
@@ -143,7 +148,7 @@ public class IA extends Joueur implements Serializable {
 						if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
 							System.out.print("X  ");
 						}else {
-							System.out.print("-  "); //positions des bateaux de l'IA (cachés)
+							System.out.print("O  "); //positions des bateaux de l'IA (cachés)
 						}
 						
 					}else {

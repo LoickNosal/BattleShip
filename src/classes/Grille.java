@@ -1,3 +1,5 @@
+package classes;
+
 import java.io.Serializable;
 
 
@@ -6,6 +8,7 @@ import java.io.Serializable;
  * classe Grille qui modèlise le plateau de jeu.
  */
 public class Grille implements Serializable{
+
 	
 	/**
 	 * Taille en abcisse de la grille
