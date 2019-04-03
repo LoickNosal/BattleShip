@@ -10,7 +10,7 @@ public interface Partie{
 	
 	public abstract Partie charger(String source) throws IOException, ClassNotFoundException;
 	
-	public abstract void lancerPartie() throws FileNotFoundException, IOException;
+	public abstract void lancerPartie() throws FileNotFoundException, IOException, ClassNotFoundException;
 	
 	public abstract void reprendrePartie() throws FileNotFoundException, IOException;
 	

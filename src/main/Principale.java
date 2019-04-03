@@ -29,8 +29,14 @@ public class Principale {
 					p = p.charger("src\\Sauvegardes\\partieSolo");
 					p.reprendrePartie();
 				}else {
-					Grille g = new Grille(10,10);
-					Joueur j = new Joueur(g, "loick");
+					System.out.print("Taille de la grille en X (de 5 à 100) : ");
+					int tailleGX = sc2.nextInt();
+					System.out.print("Taille de la grille en Y (de 5 à 100) : ");
+					int tailleGY = sc2.nextInt();
+					System.out.print("Nom du joueur : ");
+					String nomJ = sc.nextLine();
+					Grille g = new Grille(tailleGX,tailleGY);
+			 		Joueur j = new Joueur(g, nomJ);
 					p = new PartieSolo(j);
 					p.lancerPartie();
 				}

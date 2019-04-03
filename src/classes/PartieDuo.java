@@ -65,18 +65,19 @@ public class PartieDuo implements Partie, Serializable{
 				}
 				System.out.println(this.j1.getNomJoueur() + " gagne");
 				end = true;
+				return;
 			}
 			
 			if(end == false) {
-				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				for (int i = 0; i < this.j2.gJoueur.getTailleX()*3+10; i++) {
 					System.out.print(" ");
 				}
-				System.out.print(j1.nomJoueur + " , position x où tirer : ");
+				System.out.print(j2.nomJoueur + " , position x où tirer : ");
 				posX = sc.nextInt();
-				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				for (int i = 0; i < this.j2.gJoueur.getTailleX()*3+10; i++) {
 					System.out.print(" ");
 				}
-				System.out.print(j1.nomJoueur + " position y où tirer : ");
+				System.out.print(j2.nomJoueur + " position y où tirer : ");
 				posY = sc.nextInt();
 				
 				j2.tirer(posX, posY, j1);
@@ -87,6 +88,7 @@ public class PartieDuo implements Partie, Serializable{
 					}
 					System.out.println(this.j2.getNomJoueur() + " gagne");
 					end = true;
+					return;
 				}
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
@@ -124,18 +126,19 @@ public class PartieDuo implements Partie, Serializable{
 				}
 				System.out.println(this.j1.getNomJoueur() + " gagne");
 				end = true;
+				return;
 			}
 			
 			if(end == false) {
-				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				for (int i = 0; i < this.j2.gJoueur.getTailleX()*3+10; i++) {
 					System.out.print(" ");
 				}
-				System.out.print(j1.nomJoueur + " , position x où tirer : ");
+				System.out.print(j2.nomJoueur + " , position x où tirer : ");
 				posX = sc.nextInt();
-				for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				for (int i = 0; i < this.j2.gJoueur.getTailleX()*3+10; i++) {
 					System.out.print(" ");
 				}
-				System.out.print(j1.nomJoueur + " position y où tirer : ");
+				System.out.print(j2.nomJoueur + " position y où tirer : ");
 				posY = sc.nextInt();
 				
 				j2.tirer(posX, posY, j1);
@@ -146,6 +149,7 @@ public class PartieDuo implements Partie, Serializable{
 					}
 					System.out.println(this.j2.getNomJoueur() + " gagne");
 					end = true;
+					return;
 				}
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");

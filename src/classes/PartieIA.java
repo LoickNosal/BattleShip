@@ -80,6 +80,7 @@ public class PartieIA implements Partie, Serializable {
 					}
 					System.out.println("l'IA gagne");
 					end = true;
+					return;
 				}
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
@@ -129,6 +130,7 @@ public class PartieIA implements Partie, Serializable {
 					}
 					System.out.println("l'IA gagne");
 					end = true;
+					return;
 				}
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
