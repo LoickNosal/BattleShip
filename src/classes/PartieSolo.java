@@ -26,16 +26,28 @@ public class PartieSolo implements Partie, Serializable{
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
 		while(end == false) {
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
 			System.out.print(j.nomJoueur + " position x où tirer : ");
 			int posX = sc.nextInt();
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
 			System.out.print(j.nomJoueur + " position y où tirer : ");
 			int posY = sc.nextInt();
 			j.tirer(posX, posY, j);
 			j.afficherGrilleJoueur(j);
 			if (j.aucunBateau() == true) {
+				for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
 				System.out.println("Fin de partie");
 				end = true;
 				return;
+			}
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
 			Scanner sc2 = new Scanner(System.in);
@@ -53,6 +65,9 @@ public class PartieSolo implements Partie, Serializable{
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
 		d.close();
+		for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+			System.out.print(" ");
+		}
 		System.out.println("sauvegarde partie Solo effecutée");
 	}
 
@@ -62,6 +77,7 @@ public class PartieSolo implements Partie, Serializable{
 		ObjectInputStream di = new ObjectInputStream(new FileInputStream(source));
 		PartieSolo p = (PartieSolo)(di.readObject());
 		di.close();
+		
 		System.out.println("sauvegarde partie Solo chargée");
 		return p;
 	}
@@ -73,16 +89,28 @@ public class PartieSolo implements Partie, Serializable{
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
 		while(end == false) {
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
 			System.out.print(j.nomJoueur + " position x où tirer : ");
 			int posX = sc.nextInt();
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
 			System.out.print(j.nomJoueur + " position y où tirer : ");
 			int posY = sc.nextInt();
 			j.tirer(posX, posY, j);
 			j.afficherGrilleJoueur(j);
 			if (j.aucunBateau() == true) {
+				for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
 				System.out.println("Fin de partie");
 				end = true;
 				return;
+			}
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
 			Scanner sc2 = new Scanner(System.in);

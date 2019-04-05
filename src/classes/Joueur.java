@@ -36,7 +36,7 @@ public class Joueur implements Serializable{
 	
 	public void creationBateaux() {
 		System.out.println("--Placement des bateaux de " + this.nomJoueur + "--");
-		afficherGrilleJoueur(this);
+		this.afficherGrillePlacementBateaux();
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Voulez-vous placez vos bateaux de facon aléatoire ? oui/non : ");
 		String reponse = sc.nextLine();

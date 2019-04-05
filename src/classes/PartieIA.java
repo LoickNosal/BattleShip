@@ -29,6 +29,9 @@ public class PartieIA implements Partie, Serializable {
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
 		d.close();
+		for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+			System.out.print(" ");
+		}
 		System.out.println("sauvegarde partie IA effecutée");
 	}
 
@@ -83,6 +86,9 @@ public class PartieIA implements Partie, Serializable {
 					return;
 				}
 			}
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
 			Scanner sc2 = new Scanner(System.in);
 			String partie = sc2.nextLine();
@@ -132,6 +138,9 @@ public class PartieIA implements Partie, Serializable {
 					end = true;
 					return;
 				}
+			}
+			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
 			Scanner sc2 = new Scanner(System.in);

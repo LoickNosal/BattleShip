@@ -29,6 +29,9 @@ public class PartieDuo implements Partie, Serializable{
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
 		d.close();
+		for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+			System.out.print(" ");
+		}
 		System.out.println("sauvegarde partie Duo effecutée");
 	}
 	
@@ -43,6 +46,7 @@ public class PartieDuo implements Partie, Serializable{
 	
 	@Override
 	public void lancerPartie() throws FileNotFoundException, IOException {
+		System.out.println();
 		j2.afficherGrilleJoueur(j1);
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
@@ -90,6 +94,9 @@ public class PartieDuo implements Partie, Serializable{
 					end = true;
 					return;
 				}
+			}
+			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
 			Scanner sc2 = new Scanner(System.in);
@@ -151,6 +158,9 @@ public class PartieDuo implements Partie, Serializable{
 					end = true;
 					return;
 				}
+			}
+			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
 			}
 			System.out.print("voulez-vous enregistrer la partie ? oui/non : ");
 			Scanner sc2 = new Scanner(System.in);
