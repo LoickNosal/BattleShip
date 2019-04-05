@@ -23,7 +23,6 @@ public class PartieSolo implements Partie, Serializable{
 	
 	@Override
 	public void lancerPartie() throws FileNotFoundException, IOException {
-		j.afficherGrilleJoueur(j);
 		boolean end = false;
 		Scanner sc = new Scanner(System.in);
 		while(end == false) {

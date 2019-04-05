@@ -60,7 +60,7 @@ public class Joueur implements Serializable{
 			int posY = sc.nextInt();
 			Bateau porteAvion = new Bateau("porte-avion", gJoueur, posX,posY,5,o);
 			listeBateau.add(porteAvion);
-			afficherGrilleJoueur(this);
+			this.afficherGrillePlacementBateaux();
 			System.out.print("orientation du croiseur (taille 4) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du croiseur : ");
@@ -69,7 +69,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau croiseur = new Bateau("croiseur", gJoueur, posX,posY,4,o);
 			listeBateau.add(croiseur);
-			afficherGrilleJoueur(this);
+			this.afficherGrillePlacementBateaux();
 			System.out.print("orientation du contre torpilleur (taille 3) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du contre torpilleur : ");
@@ -78,7 +78,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau contreTorpilleur = new Bateau("contre torpilleur", gJoueur, posX,posY,3,o);
 			listeBateau.add(contreTorpilleur);
-			afficherGrilleJoueur(this);
+			this.afficherGrillePlacementBateaux();
 			System.out.print("orientation du sous-marin (taille 3) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du sous-marin : ");
@@ -87,7 +87,7 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau sousMarin = new Bateau("sous-marin", gJoueur, posX,posY,3,o);
 			listeBateau.add(sousMarin);
-			afficherGrilleJoueur(this);
+			this.afficherGrillePlacementBateaux();
 			System.out.print("orientation du torpilleur (taille 2) : ");
 			o = sc.nextBoolean();
 			System.out.print("position x de depart du torpilleur : ");
@@ -96,9 +96,10 @@ public class Joueur implements Serializable{
 			posY = sc.nextInt();
 			Bateau torpilleur = new Bateau("torpilleur", gJoueur, posX,posY,2,o);
 			listeBateau.add(torpilleur);
-			afficherGrilleJoueur(this);
+			this.afficherGrillePlacementBateaux();
 		}
-		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés--");
+		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés. Voici votre grille --");
+		this.afficherGrillePlacementBateaux();
 	}
 	public void replacerBateaux() {
 		System.out.println("--Replacement des bateau de " + this.nomJoueur + "--");
@@ -216,6 +217,41 @@ public class Joueur implements Serializable{
 			}
 		}
 		return present;
+	}
+	
+	public void afficherGrillePlacementBateaux(){
+		String s = "--Grille de " + this.nomJoueur + "--";
+		System.out.println(s);
+		for (int i = 0; i < this.gJoueur.getTailleX(); i++) {
+			if(i>9) {
+			 System.out.print(i+" ");
+			}else {
+				System.out.print(i+"  ");
+			}	
+		}
+		System.out.println();
+		for (int i = 0; i < this.gJoueur.getTailleY(); i++) {
+			for (int j = 0; j < this.gJoueur.getTailleX(); j++) {
+				if (this.bateauPresent(j, i) == true) {
+					if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
+						System.out.print("X  ");
+					}else {
+						System.out.print("O  ");
+					}
+					
+				}else {
+					if (this.gJoueur.getTabCa()[j][i].isEstVide() == true) {
+						System.out.print("#  ");
+					}else {
+						System.out.print("-  ");
+					}
+					
+				}
+				
+			}
+			System.out.print(i);
+			System.out.println();
+		}
 	}
 	
 	public void afficherGrilleJoueur(Joueur jo) {

@@ -10,6 +10,8 @@ public class Principale {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
 		
+
+	
 		System.out.println("---------- Bataille Navale NOSAL Loïck S2E ---------- ");
 		System.out.println();
 		Scanner sc = new Scanner(System.in);
@@ -22,17 +24,18 @@ public class Principale {
 		if (num == 1) {
 			PartieSolo p = new PartieSolo();
 			try {
-				Scanner sc2 = new Scanner(System.in);
+				sc.nextLine();
 				System.out.print("voulez-vous charger la partie ? oui/non : ");
-				String partie = sc2.nextLine();
+				String partie = sc.nextLine();
 				if (partie.equals("oui")) {
 					p = p.charger("src\\Sauvegardes\\partieSolo");
 					p.reprendrePartie();
 				}else {
 					System.out.print("Taille de la grille en X (de 5 à 100) : ");
-					int tailleGX = sc2.nextInt();
+					int tailleGX = sc.nextInt();
 					System.out.print("Taille de la grille en Y (de 5 à 100) : ");
-					int tailleGY = sc2.nextInt();
+					int tailleGY = sc.nextInt();
+					sc.nextLine();
 					System.out.print("Nom du joueur : ");
 					String nomJ = sc.nextLine();
 					Grille g = new Grille(tailleGX,tailleGY);
@@ -40,7 +43,7 @@ public class Principale {
 					p = new PartieSolo(j);
 					p.lancerPartie();
 				}
-				sc2.close();
+				sc.close();
 			} catch (IOException e) {
 				System.out.println("probleme a l’ouverture du fichier");
 				throw(e);
@@ -48,21 +51,30 @@ public class Principale {
 		}else if (num == 2) {
 			PartieDuo p = new PartieDuo();
 			try {
-				Scanner sc2 = new Scanner(System.in);
+				sc.nextLine();
 				System.out.print("voulez-vous charger la partie ? oui/non : ");
-				String partie = sc2.nextLine();
+				String partie = sc.nextLine();
 				if (partie.equals("oui")) {
 					p = p.charger("src\\Sauvegardes\\partieDuo");
 					p.reprendrePartie();
 				}else {
-					Grille g = new Grille(10,10);
-					Grille g2 = new Grille(10,10);
-					Joueur j1 = new Joueur(g, "loick");
-					Joueur j2 = new Joueur(g2, "Léandre");
+					System.out.print("Taille de la grille en X (de 5 à 100) : ");
+					int tailleGX = sc.nextInt();
+					System.out.print("Taille de la grille en Y (de 5 à 100) : ");
+					int tailleGY = sc.nextInt();
+					sc.nextLine();
+					System.out.print("Nom du joueur 1 : ");
+					String nomJ1 = sc.nextLine();
+					System.out.print("Nom du joueur 2 : ");
+					String nomJ2 = sc.nextLine();
+					Grille g = new Grille(tailleGX,tailleGY);
+					Grille g2 = new Grille(tailleGX,tailleGY);
+					Joueur j1 = new Joueur(g, nomJ1);
+					Joueur j2 = new Joueur(g2, nomJ2);
 					p = new PartieDuo(j1,j2);
 					p.lancerPartie();
 				}
-				sc2.close();
+				sc.close();
 			} catch (IOException e) {
 				System.out.println("probleme a l’ouverture du fichier");
 				throw(e);
@@ -71,19 +83,26 @@ public class Principale {
 		}else if (num == 3) {
 			PartieIA p = new PartieIA();
 			try {
-				Scanner sc2 = new Scanner(System.in);
+				sc.nextLine();
 				System.out.print("voulez-vous charger la partie ? oui/non : ");
-				String partie = sc2.nextLine();
+				String partie = sc.nextLine();
 				if (partie.equals("oui")) {
 					p = p.charger("src\\Sauvegardes\\partieIA");
 					p.reprendrePartie();
 				}else {
-					Grille g = new Grille(10,10);
-					Joueur j = new Joueur(g, "loick");
+					System.out.print("Taille de la grille en X (de 5 à 100) : ");
+					int tailleGX = sc.nextInt();
+					System.out.print("Taille de la grille en Y (de 5 à 100) : ");
+					int tailleGY = sc.nextInt();
+					sc.nextLine();
+					System.out.print("Nom du joueur : ");
+					String nomJ = sc.nextLine();
+					Grille g = new Grille(tailleGX,tailleGY);
+					Joueur j = new Joueur(g, nomJ);
 					p = new PartieIA(j);
 					p.lancerPartie();
 				}
-				sc2.close();
+				sc.close();
 			} catch (IOException e) {
 				System.out.println("probleme a l’ouverture du fichier");
 				throw(e);
