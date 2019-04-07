@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"classes","l":"Bateau"},{"p":"classes","l":"Case"},{"p":"classes","l":"Grille"},{"p":"classes","l":"IA"},{"p":"classes","l":"Joueur"},{"p":"classes","l":"Partie"},{"p":"classes","l":"PartieDuo"},{"p":"classes","l":"PartieIA"},{"p":"classes","l":"PartieSolo"}]
