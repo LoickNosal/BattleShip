@@ -9,16 +9,32 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Scanner;
 
+/**
+ * @author Loïck Nosal
+ *modèlise une partie contre une intelligence artificielle
+ */
 public class PartieIA implements Partie, Serializable {
 	
+	/**
+	 * joueur de la partie
+	 */
 	private Joueur j;
+	/**
+	 * IA de la partie
+	 */
 	private IA intelligence;
 	
+	/**
+	 * @param jo joueur de la partie
+	 */
 	public PartieIA(Joueur jo) {
 		this.j = jo;
 		this.intelligence = null;
 	}
 	
+	/**
+	 * constructeur vide
+	 */
 	public PartieIA() {
 		this.j = null;
 		this.intelligence = null;

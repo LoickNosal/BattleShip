@@ -3,6 +3,14 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import classes.*;
 
+/**
+ * @author Loïck Nosal
+ *Classe de test du jeu Bataille Navale
+ *Beaucoup de méthode (placement des bateaux par exemples)
+ *ont été testé à la main car elle necessite des entrées et sorties consoles
+ *et cela n'est pas adapté à Junit.
+ *JUnit 4 est utilisé ici.
+ */
 public class TestBattleShip {
 
 	@Test
@@ -87,5 +95,57 @@ public class TestBattleShip {
 		//retourne vrai si b.getPosX est dans l'intervalle [5-5;5+5] soit [0;10]
 		assertEquals("la position y de depart est entre 0 et 10", 5,b.getPosY(),5);
 	}
+	
+	@Test
+	public void testPourcentageImpactBateau() {
+		Grille g = new Grille(10,10);
+		Bateau b = new Bateau("test", g, 5);
+		//le 0.001 permet de savoir la precision pour comparer deux double
+		assertEquals("le pourcentage d'impact du bateau est de 100% (pas touché)", 100.0,b.pourcentageImpact(),0.001);
+		//on touche ensuite le bateau et on recalcule le pourcentage.
+		b.touche(b.getPosX(), b.getPosY());
+		assertEquals("le pourcentage d'impact du bateau est de 80%", 80.0,b.pourcentageImpact(),0.001);
+
+	}
+	
+	@Test
+	public void testBateauCoule() {
+		Grille g = new Grille(10,10);
+		Bateau b = new Bateau("test", g, 1);
+		assertEquals("le bateau n'est pas coule", true,b.isEstEnVie());
+		b.touche(b.getPosX(), b.getPosY());
+		assertEquals("le bateau est coule", false,b.isEstEnVie());
+	}
+	
+	@Test
+	public void testJoueurBateaux() {
+		Grille g = new Grille(10,10);
+		//on test avec une IA qui dérive de joueur car les bateaux sont placés automatiquement
+		IA j = new IA(g, "JoueurTest");
+		assertEquals("tous les bateaux n'ont pas été coulés", false,j.aucunBateau());
+		//on tire sur toutes les cases
+		for (int i = 0; i < g.getTailleX(); i++) {
+			for (int k = 0; k < g.getTailleY(); k++) {
+				j.tirer(i,k,j);
+			}
+		}
+		assertEquals("tous les bateaux ont été coulés", true,j.aucunBateau());
+	}
+	
+	@Test
+	public void testJoueurBateauPresent() {
+		Grille g = new Grille(10,10);
+		Joueur j = new Joueur(g);
+		Bateau b = new Bateau("BateauTest", g, 0, 0, 5, true);
+		j.ajouterBateauListe(b);
+		assertEquals("aucun bateau sur cette case", false,j.bateauPresent(9, 9));
+		assertEquals("bateau present sur cette case", true,j.bateauPresent(0, 0));
+		
+	}
+	
+	
+	
+	
+	
 
 }

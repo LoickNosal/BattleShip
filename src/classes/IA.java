@@ -4,19 +4,41 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
+/**
+ * @author Loïck Nosal
+ *classe qui dérive de Joueur représente une intelligence artificielle 
+ *qui tire aléatoirement sur les cases et ne peut pas tirer deux fois sur la meme case
+ */
 public class IA extends Joueur implements Serializable {
 	
+	
+	/**
+	 * coordonne x maximum pour l'aléatoire
+	 */
 	private int maxX;
+	/**
+	 * coordonne y maximum pour l'aléatoire
+	 */
 	private int maxY;
 	
 	
+	/**
+	 * @param g grille de l'IA
+	 * @param n nom de l'IA
+	 */
 	public IA(Grille g, String n) {
+		
 		super(g, n);
 		this.maxX = this.gJoueur.getTailleX() - 1;
 		this.maxY = this.gJoueur.getTailleY() - 1;
 	}
 	
+	/**
+	 * @param max nombre maximum à générer
+	 * @return un nombre entre 0 et max
+	 */
 	public int nombreRandom(int max) {
+		
 		int x = (int)(Math.random() * (max+1));
 		return x;
 	}
@@ -35,6 +57,10 @@ public class IA extends Joueur implements Serializable {
 		listeBateau.add(torpilleur);
 	}
 	
+	/**
+	 * permet de tirer aleatoirement sur la grille d'une joueur adverse
+	 * @param j joueur sur lequel tirer
+	 */
 	public void tirer(Joueur j) {
 		int posX = nombreRandom(maxX);
 		int posY = nombreRandom(maxY);
@@ -68,7 +94,11 @@ public class IA extends Joueur implements Serializable {
 	}
 	
 	
+	/* 
+	 * permet d'afficher la grille du joueur et de l'IA
+	 */
 	public void afficherGrilleJoueur(Joueur jo) {
+		
 		String s = "--Grille de " + jo.nomJoueur + "--";
 		System.out.print(s);
 		for (int i = 0; i < (this.gJoueur.getTailleX()*3)-s.length() + 60 + 1; i++) {
@@ -148,7 +178,9 @@ public class IA extends Joueur implements Serializable {
 						if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
 							System.out.print("X  ");
 						}else {
-							System.out.print("O  "); //positions des bateaux de l'IA (cachés)
+							//Si "O" on voit les bateaux adverses
+							//Si "-" on ne voit pas les bateaux adverses
+							System.out.print("-  "); 
 						}
 						
 					}else {

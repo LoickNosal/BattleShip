@@ -9,23 +9,43 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Scanner;
 
+/**
+ * @author Loïck Nosal
+ * représente une partie où s'affrontent deux joueurs
+ *
+ */
 public class PartieDuo implements Partie, Serializable{
 	
+	/**
+	 * joueur 1
+	 */
 	private Joueur j1;
+	/**
+	 * joueur 2
+	 */
 	private Joueur j2;
 	
+	/**
+	 * @param jo1 joueur 1
+	 * @param jo2 joueur 2
+	 */
 	public PartieDuo(Joueur jo1, Joueur jo2) {
 		this.j1 = jo1;
 		this.j2 = jo2;
 	}
 	
+	/**
+	 * Constructeur vide
+	 */
 	public PartieDuo() {
+		
 		this.j1 = null;
 		this.j2 = null;
 	}
 	
 	@Override
 	public void sauvegarder(String dest) throws FileNotFoundException, IOException {
+		
 		ObjectOutputStream d = new ObjectOutputStream(new FileOutputStream(dest));
 		d.writeObject(this);
 		d.close();

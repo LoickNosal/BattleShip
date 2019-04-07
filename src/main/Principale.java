@@ -4,6 +4,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import classes.*;
 
+/**
+ * @author Loïck Nosal
+ *Classe principale de la bataille navale
+ *avec la gestion de 3 modes de jeu
+ */
 public class Principale {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{

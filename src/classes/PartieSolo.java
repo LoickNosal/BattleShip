@@ -9,14 +9,29 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Scanner;
 
+/**
+ * @author Loïck Nosal
+ * Modélise une partie Contre sois-même
+ *
+ */
 public class PartieSolo implements Partie, Serializable{
 	
+	/**
+	 * Joueur de la partie
+	 */
 	private Joueur j;
 	
+	/**
+	 * @param jo joueur de la partie
+	 */
 	public PartieSolo(Joueur jo) {
+		
 		this.j = jo;
 	}
 	
+	/**
+	 * constructeur vide
+	 */
 	public PartieSolo() {
 		this.j = null;
 	}

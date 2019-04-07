@@ -9,13 +9,27 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Loïck Nosal
+ *Classe qui modélise un Joueur de la bataille navale
+ */
 public class Joueur implements Serializable{
 	
+	/**
+	 * Grille du joueur
+	 */
 	protected Grille gJoueur;
+	/**
+	 * liste des bateaux du joueur
+	 */
 	protected ArrayList<Bateau> listeBateau;
+	/**
+	 * nom du joueur
+	 */
 	protected String nomJoueur;
 	
 	public String getNomJoueur() {
+		
 		return nomJoueur;
 	}
 	public Grille getgJoueur() {
@@ -26,15 +40,45 @@ public class Joueur implements Serializable{
 	}
 
 	
+	/**
+	 * Constructeur simple utile pour la classe de test
+	 * @param g grille du joueur
+	 */
+	public Joueur(Grille g) {
+		
+		this.nomJoueur = "Joueurtest";
+		this.gJoueur = g;
+		this.listeBateau = new ArrayList<Bateau>();
+	}
 	
+	/**
+	 * @param g grille du joueur
+	 * @param n nom du joueur
+	 */
 	public Joueur(Grille g, String n) {
+		
 		this.nomJoueur = n;
 		this.gJoueur = g;
 		this.listeBateau = new ArrayList<Bateau>();
 		creationBateaux();
 	}
 	
+
+	/**
+	 * methode utile pour la classe de test
+	 * @param b bateau à ajouter à la liste
+	 */
+	public void ajouterBateauListe(Bateau b) {
+		
+		this.listeBateau.add(b);
+	}
+	
+	/**
+	 * methode qui creer les 5 bateaux du joueur
+	 * Les bateaux sont repris du jeu de bataille navale de base
+	 */
 	public void creationBateaux() {
+		
 		System.out.println("--Placement des bateaux de " + this.nomJoueur + "--");
 		this.afficherGrillePlacementBateaux();
 		Scanner sc = new Scanner(System.in);
@@ -101,7 +145,12 @@ public class Joueur implements Serializable{
 		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés. Voici votre grille --");
 		this.afficherGrillePlacementBateaux();
 	}
+	
+	/**
+	 * Methode pour replacer tout les bateaux du joueur
+	 */
 	public void replacerBateaux() {
+		
 		System.out.println("--Replacement des bateau de " + this.nomJoueur + "--");
 		for(Bateau b : listeBateau) {
 			b.reinitialiserPos();
@@ -112,13 +161,26 @@ public class Joueur implements Serializable{
 		System.out.println("--Bateaux du joueur " + this.nomJoueur + " placés--");
 	}
 	
+	
+	/**
+	 * Methode qui affiche les bateaux du joueur dans l'ordre
+	 * de la liste (utile pour les tris)
+	 */
 	public void afficherBateau() {
+		
 		for(Bateau b : listeBateau) {
 			System.out.println(b.toString());
 		}
 	}
 	
+	/**
+	 * Methode pour tirer sur un autre joueur (ou sois même en mode solo)
+	 * @param posX position x où tirer
+	 * @param posY position y où tirer
+	 * @param j joueur sur lequel tirer
+	 */
 	public void tirer(int posX, int posY, Joueur j) {
+		
 		if (posX > j.getgJoueur().getTailleX()-1 || posY > j.getgJoueur().getTailleY()-1) {
 			Scanner sc = new Scanner(System.in);
 			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
@@ -178,7 +240,13 @@ public class Joueur implements Serializable{
 		}
 	}
 	
+	
+	/**
+	 * permet de savoir si tout les bateaux du joueur ont ete coules
+	 * @return true si le joueur n'a plus de bateaux en vie
+	 */
 	public boolean aucunBateau() {
+		
 		boolean perdu = false;
 		for(Bateau b : this.listeBateau) {
 			if (b.isEstEnVie() == true) {
@@ -195,15 +263,14 @@ public class Joueur implements Serializable{
 			System.out.println("tout les bateaux ont ete coules");
 		}
 		return perdu;
-	}
+	}	
 	
-	public void afficherOrdreBateau() {
-		for(Bateau b : this.listeBateau) {
-			System.out.println(b.getNom());
-		}
-	}
 	
+	/**
+	 * Methode de tri des bateaux en fonction de leur taille
+	 */
 	public void triBateauTaille() {
+		
 		ArrayList<Bateau> lf = new ArrayList<Bateau>();	
 		while(this.listeBateau.isEmpty() == false) {
 			int t = 0;
@@ -224,7 +291,11 @@ public class Joueur implements Serializable{
 		this.listeBateau = lf;
 	}
 	
+	/**
+	 * methode de tri des bateaux en fonction de leur poucentage d'impact
+	 */
 	public void triBateauImpact() {
+		
 		ArrayList<Bateau> lf = new ArrayList<Bateau>();	
 		while(this.listeBateau.isEmpty() == false) {
 			double t = -1;
@@ -245,7 +316,15 @@ public class Joueur implements Serializable{
 		this.listeBateau = lf;
 	}
 	
+	
+	/**
+	 * permet de savoir si un bateau est présent sur une case ou non
+	 * @param x position x à tester
+	 * @param y position y à tester
+	 * @return true si le bateau est présent sur cette case
+	 */
 	public boolean bateauPresent(int x, int y) {
+		
 		boolean present = false;
 		for (Bateau b : listeBateau) {
 			for(Case c : b.getPosBateau())
@@ -257,7 +336,12 @@ public class Joueur implements Serializable{
 		return present;
 	}
 	
+	/**
+	 * permet d'afficher la grille unique (seule), utilisé lors du placement
+	 * des bateaux du joueur
+	 */
 	public void afficherGrillePlacementBateaux(){
+		
 		String s = "--Grille de " + this.nomJoueur + "--";
 		System.out.println(s);
 		for (int i = 0; i < this.gJoueur.getTailleX(); i++) {
@@ -292,7 +376,13 @@ public class Joueur implements Serializable{
 		}
 	}
 	
+	/**
+	 * methode qui permet d'afficher sa grille, une légende et la grille de son adversaire
+	 * utilisé durant toute la partie.
+	 * @param jo joueur adverse à afficher la grille (peut être sois-même)
+	 */
 	public void afficherGrilleJoueur(Joueur jo) {
+		
 		String s = "--Grille de " + jo.nomJoueur + "--";
 		System.out.print(s);
 		for (int i = 0; i < (this.gJoueur.getTailleX()*3)-s.length() + 60 + 1; i++) {
@@ -341,7 +431,7 @@ public class Joueur implements Serializable{
 				System.out.print(i);
 				if (i == 0) {
 					System.out.print("                   --Legendes--");
-					System.out.print("                             "); //46 56 58
+					System.out.print("                             ");
 					
 				}else if(i == 1) {
 					System.out.print("               O : vos bateaux");
@@ -372,7 +462,9 @@ public class Joueur implements Serializable{
 						if (this.gJoueur.getTabCa()[j][i].isEstOccupe() == false) {
 							System.out.print("X  ");
 						}else {
-							System.out.print("O  "); //positions des bateaux de l'IA (cachés)
+							//Si "O" on voit les bateaux adverses
+							//Si "-" on ne voit pas les bateaux adverses
+							System.out.print("-  ");
 						}
 						
 					}else {
