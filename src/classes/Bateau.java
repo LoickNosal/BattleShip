@@ -485,6 +485,7 @@ public class Bateau implements Serializable{
 				//on réduit la vie du bateau de 1 car la case est touché
 				this.vie -= 1;
 				//on test si tout le bateau est détruit ou non
+				gri.getTabCa()[posX][posY].vider(true);
 				this.coule();
 				return;
 			}

@@ -69,7 +69,7 @@ public class PartieDuo implements Partie, Serializable{
 				}
 				System.out.println(this.j1.getNomJoueur() + " gagne");
 				end = true;
-				return;
+				System.exit(1);
 			}
 			
 			if(end == false) {
@@ -92,7 +92,7 @@ public class PartieDuo implements Partie, Serializable{
 					}
 					System.out.println(this.j2.getNomJoueur() + " gagne");
 					end = true;
-					return;
+					System.exit(1);
 				}
 			}
 			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {
@@ -133,7 +133,7 @@ public class PartieDuo implements Partie, Serializable{
 				}
 				System.out.println(this.j1.getNomJoueur() + " gagne");
 				end = true;
-				return;
+				System.exit(1);
 			}
 			
 			if(end == false) {
@@ -156,7 +156,7 @@ public class PartieDuo implements Partie, Serializable{
 					}
 					System.out.println(this.j2.getNomJoueur() + " gagne");
 					end = true;
-					return;
+					System.exit(1);
 				}
 			}
 			for (int i = 0; i < this.j1.gJoueur.getTailleX()*3+10; i++) {

@@ -44,7 +44,7 @@ public class PartieSolo implements Partie, Serializable{
 				}
 				System.out.println("Fin de partie");
 				end = true;
-				return;
+				System.exit(1);
 			}
 			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
 				System.out.print(" ");
@@ -107,7 +107,7 @@ public class PartieSolo implements Partie, Serializable{
 				}
 				System.out.println("Fin de partie");
 				end = true;
-				return;
+				System.exit(1);
 			}
 			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
 				System.out.print(" ");

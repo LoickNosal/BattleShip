@@ -119,25 +119,63 @@ public class Joueur implements Serializable{
 	}
 	
 	public void tirer(int posX, int posY, Joueur j) {
-		for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
-			System.out.print(" ");
-		}
-		System.out.println(this.nomJoueur + " tire en (" + posX + "," + posY + ")");
-		if (j.gJoueur.getTabCa()[posX][posY].isEstOccupe() == true) {
-			for(Bateau b : j.listeBateau) {
-				b.touche(posX, posY);
-			}
-			
-			
-		}else {
-			j.gJoueur.getTabCa()[posX][posY].vider(true); //on a l'info sur la case, on dit qu'elle 
-			//est vraiment vide
+		if (posX > j.getgJoueur().getTailleX()-1 || posY > j.getgJoueur().getTailleY()-1) {
+			Scanner sc = new Scanner(System.in);
 			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
 				System.out.print(" ");
 			}
-			System.out.println(this.nomJoueur + " n'a touché aucun bateau adverse");
+			System.out.println("Impossible de tirer à l'exterieur de la grille. Retirez : ");
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(this.nomJoueur + " , position x où tirer : ");
+			posX = sc.nextInt();
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(this.nomJoueur + " position y où tirer : ");
+			posY = sc.nextInt();
+			this.tirer(posX, posY, j);
+			return;
 		}
-		
+		if (j.gJoueur.getTabCa()[posX][posY].isEstVide() == false) {
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+	
+			System.out.println(this.nomJoueur + " tire en (" + posX + "," + posY + ")");
+			if (j.gJoueur.getTabCa()[posX][posY].isEstOccupe() == true) {
+				for(Bateau b : j.listeBateau) {
+					b.touche(posX, posY);
+				}
+	
+			}else {
+				j.gJoueur.getTabCa()[posX][posY].vider(true); //on a l'info sur la case, on dit qu'elle 
+				//est vraiment vide
+				for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+					System.out.print(" ");
+				}
+				System.out.println(this.nomJoueur + " n'a touché aucun bateau adverse");
+			}
+		}else {
+			Scanner sc = new Scanner(System.in);
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.println("Vous avez déjà tiré sur cette case. Retirez : ");
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(this.nomJoueur + " , position x où tirer : ");
+			posX = sc.nextInt();
+			for (int i = 0; i < this.gJoueur.getTailleX()*3+10; i++) {
+				System.out.print(" ");
+			}
+			System.out.print(this.nomJoueur + " position y où tirer : ");
+			posY = sc.nextInt();
+			this.tirer(posX, posY, j);
+			return;
+		}
 	}
 	
 	public boolean aucunBateau() {

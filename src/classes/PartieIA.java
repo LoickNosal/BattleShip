@@ -71,6 +71,7 @@ public class PartieIA implements Partie, Serializable {
 				}
 				System.out.println(this.j.getNomJoueur() + " gagne");
 				end = true;
+				System.exit(1);
 			}
 			
 			if(end == false) {
@@ -83,7 +84,7 @@ public class PartieIA implements Partie, Serializable {
 					}
 					System.out.println("l'IA gagne");
 					end = true;
-					return;
+					System.exit(1);
 				}
 			}
 			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
@@ -124,6 +125,7 @@ public class PartieIA implements Partie, Serializable {
 				}
 				System.out.println(this.j.getNomJoueur() + " gagne");
 				end = true;
+				System.exit(1);
 			}
 			
 			if(end == false) {
@@ -136,7 +138,7 @@ public class PartieIA implements Partie, Serializable {
 					}
 					System.out.println("l'IA gagne");
 					end = true;
-					return;
+					System.exit(1);
 				}
 			}
 			for (int i = 0; i < this.j.gJoueur.getTailleX()*3+10; i++) {
