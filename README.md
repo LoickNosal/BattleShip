@@ -2,7 +2,7 @@
 Bataille Navale java
 
 Projet fait par Nosal Loïck classe S2E IUT Charlemagne Nancy
-Lien du dépôt Git : 
+Lien du dépôt Git : https://github.com/LoickNosal/BattleShip
 
 Le jeu se déroule en console uniquement pour le moment.
 Il y a trois modes de jeu : tout seul (jouer contre soi - même), à deux joueurs ou contre une intelligence artificielle.
