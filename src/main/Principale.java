@@ -1,17 +1,13 @@
 package main;
-
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import classes.*;
 
 public class Principale {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
-		
 
-	
 		System.out.println("---------- Bataille Navale NOSAL Loïck S2E ---------- ");
 		System.out.println();
 		Scanner sc = new Scanner(System.in);
@@ -20,11 +16,10 @@ public class Principale {
 		System.out.println("3) Partie VS l'IA ");
 		System.out.println();
 		System.out.print("Selectionnez une partie (1,2 ou 3) : ");
-		int num = sc.nextInt();
-		if (num == 1) {
+		String num = sc.nextLine();
+		if (num.equals("1")) {
 			PartieSolo p = new PartieSolo();
 			try {
-				sc.nextLine();
 				System.out.print("voulez-vous charger la partie ? oui/non : ");
 				String partie = sc.nextLine();
 				if (partie.equals("oui")) {
@@ -47,11 +42,15 @@ public class Principale {
 			} catch (IOException e) {
 				System.out.println("probleme a l’ouverture du fichier");
 				throw(e);
-			}
-		}else if (num == 2) {
+			}catch (InputMismatchException e) {
+				System.out.println("chiffre invalide ou orientation du bateau invalide");
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw(e);
+			}		
+		}else if (num.equals("2")) {
 			PartieDuo p = new PartieDuo();
 			try {
-				sc.nextLine();
 				System.out.print("voulez-vous charger la partie ? oui/non : ");
 				String partie = sc.nextLine();
 				if (partie.equals("oui")) {
@@ -78,12 +77,15 @@ public class Principale {
 			} catch (IOException e) {
 				System.out.println("probleme a l’ouverture du fichier");
 				throw(e);
+			}catch (InputMismatchException e) {
+				System.out.println("chiffre invalide ou orientation du bateau invalide");
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw(e);
 			}
-			
-		}else if (num == 3) {
+		}else if (num.equals("3")) {
 			PartieIA p = new PartieIA();
 			try {
-				sc.nextLine();
 				System.out.print("voulez-vous charger la partie ? oui/non : ");
 				String partie = sc.nextLine();
 				if (partie.equals("oui")) {
@@ -106,19 +108,18 @@ public class Principale {
 			} catch (IOException e) {
 				System.out.println("probleme a l’ouverture du fichier");
 				throw(e);
+			}catch (InputMismatchException e) {
+				System.out.println("chiffre invalide ou orientation du bateau invalide");
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw(e);
 			}
 			
 		}else {
 			System.out.println("numéro de partie incorrect");
 		}
-		
-
-		
-		
-		sc.close();
-		
+		sc.close();	
 	}
-	
 	
 
 }
